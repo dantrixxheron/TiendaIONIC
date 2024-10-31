@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Autenticación</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Usuario</ion-label>
+        <ion-input [(ngModel)]="username" type="text" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input [(ngModel)]="password" [type]="showPassword ? 'text' : 'password'" required></ion-input>
+        <ion-icon [name]="showPassword ? 'eye-off' : 'eye'" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+      </ion-item>
+
+      <!-- Opción de recordar contraseña centrada y en una línea -->
+<ion-item lines="none" style="display: flex; align-items: center; justify-content: center;">
+  <ion-label style="margin-right: 8px;">Recordar contraseña</ion-label>
+  <ion-checkbox [(ngModel)]="rememberMe" color="dark"></ion-checkbox>
+</ion-item>
+
+
+      <!-- Botón de iniciar sesión -->
+      <ion-button expand="block" color="dark" (click)="login()">Iniciar Sesión</ion-button>
+
+      <!-- Opción de registrarse si no tiene cuenta -->
+      <ion-text>
+        ¿No tienes cuenta? <a (click)="goToRegister()">Regístrate aquí</a>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

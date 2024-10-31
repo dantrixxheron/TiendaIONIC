@@ -1,0 +1,23 @@
+<ion-header color="dark">
+  <ion-toolbar color="dark">
+    <ion-title>
+      <ion-item color="black" style="margin: 5px;">
+        <ion-avatar slot="start">
+          <img [src]="imageUrl" alt="Avatar" class="avatar">
+        </ion-avatar>
+        <ion-label>
+          {{ storeName }}
+        </ion-label>
+      </ion-item>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <!-- Botones lineales -->
+  <ion-button expand="block" color="dark" (click)="goToProductos()">Productos</ion-button>
+  <ion-button expand="block" color="dark" (click)="goToClientes()">Clientes</ion-button>
+  <ion-button expand="block" color="dark" (click)="goToVentas()">Ventas</ion-button>
+  <ion-button expand="block" color="dark" (click)="goToReportes()">Reportes</ion-button>
+</ion-content>

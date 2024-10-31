@@ -1,20 +1,85 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header color="dark">
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-button routerLink="/menuprincipal">
+        <ion-icon slot="icon-only" ios="home-outline" md="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>
-      Blank
+      <ion-item color="black" style="margin: 5px;">
+        <ion-avatar slot="start">
+          <img [src]="imageUrl" alt="Avatar" class="avatar">
+        </ion-avatar>
+        <ion-label>
+          {{ storeName }}
+        </ion-label>
+      </ion-item>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-header collapse="condense">
+  <ion-toolbar>
+    <ion-title size="large">Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" padding="true">
+  <ion-item>
+    <ion-label position="stacked">Nombre</ion-label>
+    <ion-input [(ngModel)]="nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Descripción</ion-label>
+    <ion-input [(ngModel)]="descripcion"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Cantidad</ion-label>
+    <ion-input [(ngModel)]="cantidad"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Precio de Costo</ion-label>
+    <ion-input [(ngModel)]="precioCosto"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Precio de Venta</ion-label>
+    <ion-input [(ngModel)]="precioVenta"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Url de la Imagen</ion-label>
+    <ion-input [(ngModel)]="urlImagen"></ion-input>
+  </ion-item>
+  <ion-button expand="block" color="dark" (click)="Agregar()">{{editando}}</ion-button>
+  <ion-button *ngIf="CancelarBtn" expand="block" color="dark" (click)="Cancelar()">Cancelar</ion-button>
+  <!--Mostrar la lista de productos en un card Image-->
+  <ion-card *ngFor="let producto of productos">
+    <ion-grid>
+      <ion-row>
+        <!-- Columna de imagen sin bordes redondos ni margen extra -->
+        <ion-col size="4">
+          <img [src]="producto.urlImagen" alt="Imagen de {{producto.nombre}}" width="100%" height="auto">
+        </ion-col>
+        <!-- Columna de detalles del producto -->
+        <ion-col size="8">
+          <ion-card-header>
+            <ion-card-title>{{producto.nombre}}</ion-card-title>
+            <ion-card-subtitle>${{producto.precioVenta}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{producto.descripcion}}</p>
+            <p>Cantidad: {{producto.cantidad}}</p>
+            <p>Precio de Costo: ${{producto.precioCosto}}</p>
+          </ion-card-content>
+        </ion-col>
+      </ion-row>
+      <!-- Fila de botones -->
+      <ion-row>
+        <ion-col size="6">
+          <ion-button expand="block" color="dark" (click)="editarProducto(producto)">Editar</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" color="danger" (click)="eliminarProducto(producto)">Eliminar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>  
 </ion-content>
